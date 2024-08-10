@@ -1,0 +1,65 @@
+{
+    "bindings": [],
+    "exchanges": [],
+    "global_parameters": [],
+    "parameters": [],
+    "permissions": [
+        {
+            "configure": ".*",
+            "read": ".*",
+            "user": "guest",
+            "vhost": "/",
+            "write": ".*"
+        },
+        {
+            "configure": ".*",
+            "read": ".*",
+            "user": "dev",
+            "vhost": "dev_vhost",
+            "write": ".*"
+        }
+    ],
+    "policies": [],
+    "queues": [],
+    "rabbit_version": "3.10.20",
+    "rabbitmq_version": "3.10.20",
+    "topic_permissions": [],
+    "users": [
+        {
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "limits": {},
+            "name": "guest",
+            "password_hash": "4xPC5IEVMxOL0tdOVct66e2R5gDD4i5Zy1JjcgeyKUVB96rG",
+            "tags": [
+            "administrator"
+            ]
+        },
+        {
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "limits": {},
+            "name": "dev",
+            "password_hash": "gY4sU9q0MKMUCaNYGrBjiaFPr8EV56w4ReICCMfArnJVp4EV",
+            "tags": [
+            "dev"
+            ]
+        }
+    ],
+    "vhosts": [
+        {
+            "limits": [],
+            "metadata": {
+            "description": "",
+            "tags": []
+            },
+            "name": "dev_vhost"
+        },
+        {
+            "limits": [],
+            "metadata": {
+            "description": "Default virtual host",
+            "tags": []
+            },
+            "name": "/"
+        }
+    ]
+}

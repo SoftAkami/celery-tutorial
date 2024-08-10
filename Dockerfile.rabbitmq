@@ -1,0 +1,8 @@
+FROM rabbitmq:3.10.20
+
+# Copy rabbitmq config file
+COPY /rabbitmq/rabbitmq.conf /etc/rabbitmq/
+# Copy definition file
+COPY /rabbitmq/definitions.file.json /usr/local/bin/
+# Start server in foreground
+CMD rabbitmq-server
