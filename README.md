@@ -15,35 +15,46 @@ Requirements
     Able to see what is in progress
     Able to find worker handling the task
 
+Start worker
+```
+# celery -A my_project worker -Q my_queue -n=my_worker@%h -c=1 -l=INFO
+celery -A task_queue.app worker -Q Queue1 -n=worker1@%h  -c=1 -l=INFO
+```
 
+List queues consumed by each worker
+```
+celery -A task_queue.app inspect active_queues
+```
+
+Inpect active tasks of each worker
+```
+celery -A task_queue.app inspect active
+```
+
+Purge message
+```
+celery -A task_queue.app purge -Q Queue0
+```
+
+Shutdown workers
+```
+celery -A task_queue.app control shutdown
+```
+
+
+## RabbitMQ
+Diagnostics in RabbitMQ
+```
+rabbitmqctl list_queues --vhost dev_vhost
+```
 
 Launch RabbitMQ server
 ```
-sudo rabbitmq-server [-detached]
+sudo rabbitmq-server -detached
 ```
 
 End RabbitMQ server
 ```
 sudo rabbitmqctl stop
-```
-
-Start worker
-```
-# celery -A my_project worker -Q my_queue --hostname=my_worker@%h --loglevel=INFO
-celery -A task_queue.celery_app worker -Q Queue1 --hostname=worker1@%h --concurrency=1 --loglevel=INFO
-```
-
-Active tasks
-```
-celery -A task_queue.app inspect active
-```
-
-```
-rabbitmqctl list_queues --vhost dev_vhost
-```
-
-Purge message
-```
-celery -A task_queue.celery_app purge -Q Queue0
 ```
 

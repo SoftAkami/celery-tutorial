@@ -1,16 +1,15 @@
 FROM python:3.10-slim
 RUN apt-get update
 RUN apt-get install -y sudo net-tools telnet iputils-ping
+
 # Dev environment
 RUN apt-get install -y git-all
-RUN apt-get install -y rabbitmq-server
+
+ENV PYTHONPATH=./src
 
 # Persist bash history
 RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
     && echo "$SNIPPET" >> "/root/.bashrc"
 
-COPY requirements.txt task-server.sh /usr/local/bin/
-RUN pip install --no-cache-dir -r /usr/local/bin/requirements.txt
-RUN chmod +x /usr/local/bin/task-server.sh
-
-CMD ["bash", "-c", "/usr/local/bin/task-server.sh; while sleep 1000; do :; done"]
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt

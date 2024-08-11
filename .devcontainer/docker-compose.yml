@@ -21,6 +21,12 @@ services:
       context: ../
       dockerfile: Dockerfile.rabbitmq
 
+  multi-worker-1:
+    build:
+      context: ../
+      dockerfile: Dockerfile.worker
+    hostname: multi-worker-1
+
 networks:
   default:
     name: task_queue
