@@ -1,11 +1,12 @@
 from celery.result import AsyncResult
-from task_queue.config import QueueName
-from task_queue.worker import counter
+from task_queue.celery_config import QueueName
+from task_queue.tasks import counter
 from task_queue.app import app
+
 
 result: AsyncResult = counter.apply_async(
     (4,),
-    shadow="my_job",
+    shadow="my_job3",
     time_limit=200,  # Worker time limit
     queue=QueueName.QUEUE1
 )
@@ -13,8 +14,8 @@ result: AsyncResult = counter.apply_async(
 inspect = app.control.inspect()
 
 result2: AsyncResult = counter.apply_async(
-    (5,),
-    shadow="my_job",
+    (8,),
+    shadow="my_job4",
     time_limit=200,  # Worker time limit
     queue=QueueName.QUEUE1
 )

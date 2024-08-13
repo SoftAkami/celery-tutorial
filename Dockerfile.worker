@@ -5,6 +5,8 @@ RUN apt-get install -y sudo net-tools telnet iputils-ping
 ENV PYTHONPATH="/usr/local/lib"
 
 COPY src/task_queue/ /usr/local/lib/task_queue/
+COPY src/utils/ /usr/local/lib/utils/
+COPY src/my_project/ /usr/local/lib/my_project/
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt

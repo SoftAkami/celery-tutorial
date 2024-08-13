@@ -1,4 +1,20 @@
-Celery existed for a long time
+Requirements
+ - Set task priority
+ - Send job to particular queue
+ - Able to see what is in queue
+ - Able to see what is in progress
+ - Able to find worker handling the task
+
+## Celery
+ - Celery is a distributed task queue library written in Python.
+ - Support automatic retry.
+ - Support prefork for multiprocessing
+ - Task time limit.
+ - Doesn't support Windows.
+
+Additional features
+ - Scheduling.
+ - Native Flask web framework
 
 Can set time limit per task
 
@@ -8,12 +24,20 @@ Exchange
  - Fanout Exchange: Use this when you want to broadcast a task to multiple queues, regardless of routing keys.
  - Headers Exchange: Use this when you need advanced routing based on message headers.
 
-Requirements
-    Set task priority
-    Send job to particular queue
-    Able to see what is in queue
-    Able to see what is in progress
-    Able to find worker handling the task
+### Logging
+ - Predefined logger
+    - 'celery'
+    - 'celery.task'
+    - 'celery.redirect'
+        `print()` to `stdout` and `stderr` will be shown under `logging.WARNING`.
+ - Root logger uses worker_log_format
+
+
+
+
+## Setup
+ - Standalone RabbitMQ service. See Dockerfile.rabbitmq.
+
 
 Start worker
 ```
@@ -41,6 +65,7 @@ Shutdown workers
 celery -A task_queue.app control shutdown
 ```
 
+Celery redirects stdout (where print writes its output) to the logger at the WARNING level by default
 
 ## RabbitMQ
 Diagnostics in RabbitMQ
