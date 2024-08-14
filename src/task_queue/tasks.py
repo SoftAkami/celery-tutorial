@@ -6,6 +6,7 @@ import time
 from celery.utils.log import get_task_logger
 from celery.app.log import get_current_task
 from celery import Task
+from celery import states
 
 from task_queue.app import app
 from my_project.config import PROJECT_ROOT
@@ -103,10 +104,12 @@ proj_logger.addHandler(stream_handler)
 proj_logger.propagate = False
 
 
-@app.task(bind=True, track_started=True)
+@app.task(bind=True, name='my_task_name', track_started=True)
 def counter(self: Task, t: int):
-
-    self.update_state(meta={"test": 1})
-    task_logger.info("My test task logger")
+    self.update_state(
+        state=states.STARTED,
+        meta={"test": 1}  # Process intermidiate result
+    )
+    task_logger.info(f"My test task logger {self.name} {self.track_started}")
     print(self.request)
     return custom_counter(t)

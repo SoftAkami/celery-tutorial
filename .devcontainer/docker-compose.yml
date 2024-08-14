@@ -1,6 +1,26 @@
 version: '3'
 
 services:
+  rabbitmq:
+    build:
+      context: ../
+      dockerfile: Dockerfile.rabbitmq
+    ports:
+      - "5672:5672"    # AMQP port
+      - "15672:15672"  # Management UI/API port
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_backend
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: dev_pw
+      MYSQL_DATABASE: dev_db
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev_pw
+    ports:
+      - "13306:13306"  # expose the MySQL port
+
   app:
     build: 
       context: ../
@@ -14,12 +34,7 @@ services:
       # - /var/run/docker.sock:/var/run/docker.sock
       
     # Overrides default command so things don't shut down after the process ends.
-    command: /bin/sh -c "while sleep 1000; do :; done" 
-  
-  rabbitmq:
-    build:
-      context: ../
-      dockerfile: Dockerfile.rabbitmq
+    command: /bin/sh -c "while sleep 1000; do :; done"
 
   multi-worker-1:
     build:

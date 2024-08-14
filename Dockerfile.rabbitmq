@@ -5,4 +5,4 @@ COPY /rabbitmq/rabbitmq.conf /etc/rabbitmq/
 # Copy definition file
 COPY /rabbitmq/definitions.file.json /usr/local/etc/
 # Start server in foreground
-CMD rabbitmq-server
+CMD rabbitmq-plugins enable rabbitmq_management && rabbitmq-server

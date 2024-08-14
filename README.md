@@ -26,13 +26,18 @@ Exchange
 
 ### Logging
  - Predefined logger
-    - 'celery'
-    - 'celery.task'
-    - 'celery.redirect'
-        `print()` to `stdout` and `stderr` will be shown under `logging.WARNING`.
+     - 'celery'
+     - 'celery.task'
+     - 'celery.redirect'
+    `print()` to `stdout` and `stderr` will be shown under `logging.WARNING`.
  - Root logger uses worker_log_format
 
+### Retry
+ - app.Task.retry()
+    send a new message, using the same task-id, and it’ll take care to make sure the message is delivered to the same queue (at the end) as the originating task.
 
+### Limitation
+ - 
 
 
 ## Setup
@@ -65,14 +70,15 @@ Shutdown workers
 celery -A task_queue.app control shutdown
 ```
 
-Celery redirects stdout (where print writes its output) to the logger at the WARNING level by default
+Celery redirects stdout (where print writes its output) to the `celery.redirected` logger `WARNING`.
+
+## Flower
+Need "administrator" to view "Broker" page.
+```
+celery -A task_queue.app flower --broker_api=http://dev:dev_pw@rabbitmq:15672/api/
+```
 
 ## RabbitMQ
-Diagnostics in RabbitMQ
-```
-rabbitmqctl list_queues --vhost dev_vhost
-```
-
 Launch RabbitMQ server
 ```
 sudo rabbitmq-server -detached
@@ -82,4 +88,14 @@ End RabbitMQ server
 ```
 sudo rabbitmqctl stop
 ```
+
+### Diagnostics
+Web UI at port `15672`.
+
+Diagnostics in RabbitMQ
+```
+rabbitmqctl list_queues --vhost dev_vhost
+```
+
+
 

@@ -21,7 +21,7 @@ class QueueName(str, Enum):
 
 class Config:
 
-    result_expires = 10
+    # result_expires = 10
     result_extended = True
 
     task_default_exchange = 'task_exchange'
@@ -41,3 +41,9 @@ class Config:
     worker_log_format = WORKER_LOG_FORMAT
     worker_task_log_format = WORKER_TASK_LOG_FORMAT
     # worker_redirect_stdouts = False
+
+    # Setting task_ack_late = False and worker_prefetch_multiplier = 1
+    # will reserve 1 task in addition to 1 task in progress per worker.
+    # See https://docs.celeryq.dev/en/stable/userguide/optimizing.html#reserve-one-task-at-a-time
+    task_acks_late = True
+    worker_prefetch_multiplier = 1  # Disable prefetching

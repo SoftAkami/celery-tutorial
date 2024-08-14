@@ -40,7 +40,7 @@
             "name": "dev",
             "password_hash": "gY4sU9q0MKMUCaNYGrBjiaFPr8EV56w4ReICCMfArnJVp4EV",
             "tags": [
-            "dev"
+            "administrator", "dev"
             ]
         }
     ],

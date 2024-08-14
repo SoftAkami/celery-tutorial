@@ -2,6 +2,7 @@ import logging
 import sys
 
 from utils.logging_tool import TimePathFormatter, CUSTOM_TIME_FORMAT
+from my_project.config import PROJECT_ROOT
 
 
 LOGGER_FORMAT = (

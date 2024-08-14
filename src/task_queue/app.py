@@ -22,7 +22,8 @@ def setup_log_format(sender, conf, **kwargs):
 app = Celery(
     'my_task_queue',
     broker="amqp://dev:dev_pw@rabbitmq:5672/dev_vhost",
-    backend="rpc://",
+    #backend="rpc://",
+    backend="db+mysql://dev:dev_pw@mysql:3306/dev_db",
     include=['task_queue.tasks']
 )
 app.config_from_object(Config)
