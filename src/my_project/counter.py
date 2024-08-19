@@ -9,6 +9,8 @@ def custom_counter(t: int):
     logging.info("Counter root logger")
     logging.getLogger('my_project').info("Counter project logger")
     print(f"Running my counter", file=sys.stdout)
+    if t <= 0:
+        raise ValueError(f"{t}<=0")
     for i in range(t):
         print(i)
         logging.getLogger("my_project").info(i)

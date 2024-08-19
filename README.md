@@ -1,9 +1,9 @@
 Requirements
- - Set task priority
+ - Send task that need to execute immidiately to the front
  - Send job to particular queue
  - Able to see what is in queue
  - Able to see what is in progress
- - Able to find worker handling the task
+ - Able to find consumer handling the task
 
 ## Celery
  - Celery is a distributed task queue library written in Python.
@@ -11,12 +11,12 @@ Requirements
  - Support prefork for multiprocessing
  - Task time limit.
  - Doesn't support Windows.
-
+ - Chain is submitted Interupting producer 
+ - Supported result backends: https://docs.celeryq.dev/en/stable/userguide/configuration.html#result-backend
+ 
 Additional features
  - Scheduling.
  - Native Flask web framework
-
-Can set time limit per task
 
 Exchange
  - Direct Exchange: Use this when you want tasks to be routed to a queue with an exact match between the routing key and the queue name.

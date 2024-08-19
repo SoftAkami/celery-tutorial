@@ -31,6 +31,7 @@ class Config:
     task_queues=(
         Queue(QueueName.QUEUE0, routing_key='queue0.#'),
         Queue(QueueName.QUEUE1, routing_key='queue1.#'),
+        Queue(QueueName.QUEUE2, routing_key='queue2.#'),
     )
     task_default_queue = QueueName.QUEUE0  # Default queue used by `task.apply_async`
 

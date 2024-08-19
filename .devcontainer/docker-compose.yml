@@ -10,7 +10,7 @@ services:
       - "15672:15672"  # Management UI/API port
 
   mysql:
-    image: mysql:8.0
+    image: mysql:5.7-debian
     container_name: mysql_backend
     restart: unless-stopped
     environment:
@@ -19,7 +19,7 @@ services:
       MYSQL_USER: dev
       MYSQL_PASSWORD: dev_pw
     ports:
-      - "13306:13306"  # expose the MySQL port
+      - "13306:3306"  # expose the MySQL port
 
   app:
     build: 
@@ -41,6 +41,12 @@ services:
       context: ../
       dockerfile: Dockerfile.worker
     hostname: multi-worker-1
+
+  multi-worker-2:
+    build:
+      context: ../
+      dockerfile: Dockerfile.worker
+    hostname: multi-worker-2
 
 networks:
   default:
