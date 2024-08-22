@@ -79,6 +79,9 @@ celery -A task_queue.app flower --broker_api=http://dev:dev_pw@rabbitmq:15672/ap
 ```
 
 ## RabbitMQ
+
+Queue size must be monitor
+
 Launch RabbitMQ server
 ```
 sudo rabbitmq-server -detached
